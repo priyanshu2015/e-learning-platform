@@ -33,8 +33,7 @@ $tmp_file=$_FILES['image']['tmp_name'];
 $img_name=$_FILES['image']['name'];
 
 $img_filename=SITE_ROOT.'/images/course_images/img_'.time().'_'.$img_name;
-
-
+$store_img_name = '/images/course_images/img_'.time().'_'.$img_name;
 
 
 
@@ -45,7 +44,7 @@ $course->description = $description;
 $course->instructor_id = $instructor_id;
 $course->category_id = $category_id;
 $course->language_medium_id = $language_medium_id;
-$course->image = $img_filename;
+$course->image = $store_img_name;
 
 //create post
 if ($course->create()) {
