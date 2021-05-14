@@ -127,4 +127,14 @@ class Course{
 
     }
 
+    public function list_videos($course_video){
+        $result = $course_video->read();
+        return $result;
+    }
+
+    public function retrieve_video($course_video){
+        $result = $course_video->read_single();
+        return $result;
+    }
+
 }

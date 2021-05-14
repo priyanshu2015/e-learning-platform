@@ -19,7 +19,7 @@ $num = $result->rowCount();
 
 
 
-if($num > 0){
+// if($num > 0){
     // // Pagination
     // // find out total pages
     // $rowsperpage = 5;
@@ -66,6 +66,6 @@ if($num > 0){
     }
     //convert to JSON and output
     echo json_encode($course_arr);
-}else{
-    echo json_encode(array('message' => 'No posts found.'));
-}
+// }else{
+//     echo json_encode(array('message' => 'No posts found.'));
+// }
