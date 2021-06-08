@@ -12,5 +12,7 @@ require_once(INC_PATH.DS."config.php");
 //core classes
 require_once(CORE_PATH.DS."post.php");
 require_once(CORE_PATH.DS."user.php");
+require_once(CORE_PATH.DS."course_category.php");
+require_once(CORE_PATH.DS."language_medium.php");
 
 ?>

@@ -102,5 +102,31 @@ class CourseVideo{
         $this->course_id = $row['course_id'];
         $this->created_at = $row['created_at'];
     }
+
+    public function create(){
+        //create query
+        $query = 'INSERT INTO ' . $this->table . ' SET title = :title, description = :description, course_id= :course_id, url=:url';
+        //prepare statement
+        $stmt = $this->conn->prepare($query);
+        //clean data
+        $this->title = htmlspecialchars(strip_tags($this->title));
+        $this->description = $this->description;
+        $this->course_id = htmlspecialchars(strip_tags($this->course_id));
+        $this->url = htmlspecialchars(strip_tags($this->url));
+        //binding of parameters
+        $stmt->bindParam(':title', $this->title);
+        $stmt->bindParam(':description', $this->description);
+        $stmt->bindParam(':course_id', $this->course_id);
+        $stmt->bindParam(':url', $this->url);
+        //execute query
+        if($stmt->execute()){
+            return true;
+        }
+
+        //print error if something goes wrong
+        printf("Error %s. \n", $stmt->error);
+        return false;
+
+    }
 }
 ?>

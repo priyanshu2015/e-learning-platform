@@ -55,6 +55,41 @@ class Course{
 
     }
 
+    public function readmycourses(){
+        //create query
+        $query = 'SELECT
+        c.category_name as category_name,
+        l.language_name as language_name,
+        i.name as instructor_name,
+        p.id,
+        p.title,
+        p.category_id,
+        p.description,
+        p.language_medium_id,
+        p.image,
+        p.instructor_id,
+        p.created_at
+        
+        
+        FROM
+        ' .$this->table . ' p
+        LEFT JOIN course_categories c ON p.category_id = c.id 
+        LEFT JOIN users i ON p.instructor_id = i.id 
+        LEFT JOIN language_mediums l ON p.language_medium_id = l.id
+        WHERE p.instructor_id = :id
+        ORDER BY p.created_at DESC';  
+            
+
+    //prepare statement
+    $stmt = $this->conn->prepare($query);
+    $stmt->bindParam(':id', $this->instructor_id);
+    //execute query
+    $stmt->execute();
+
+    return $stmt;
+
+    }
+
     public function read_single(){
         //create query
         $query = 'SELECT

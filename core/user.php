@@ -14,6 +14,7 @@ class User{
     public $is_staff;
     public $is_superuser;
     public $create_at;
+    public $is_instructor;
 
     //constructor with db connection
     public function __construct($db){
@@ -112,7 +113,7 @@ class User{
     public function emailExists(){
     
         // query to check if email exists
-        $query = 'SELECT id, name, phone, password FROM ' . $this->table . ' WHERE email = ? LIMIT 0,1';
+        $query = 'SELECT id, name, phone, is_instructor, password FROM ' . $this->table . ' WHERE email = ? LIMIT 0,1';
     
         // prepare the query
         $stmt = $this->conn->prepare($query);
@@ -140,6 +141,7 @@ class User{
             $this->name = $row['name'];
             $this->phone = $row['phone'];
             $this->password = $row['password'];
+            $this->is_instructor = $row['is_instructor'];
     
             // return true because email exists in the database
             return true;
